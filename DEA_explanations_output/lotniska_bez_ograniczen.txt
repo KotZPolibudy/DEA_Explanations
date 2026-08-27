@@ -1,0 +1,361 @@
+====================================================
+RAPORT WYJAŚNIEŃ DEA DLA DATASETU: LOTNISKA (BEZ OGRANICZEŃ)
+====================================================
+
+### P1: Globalne reguły rozdzielające ###
+|--- o2 <= 22.35
+|   |--- i3 <= 21.00
+|   |   |--- o2 <= 3.85
+|   |   |   |--- class: 0
+|   |   |--- o2 >  3.85
+|   |   |   |--- class: 1
+|   |--- i3 >  21.00
+|   |   |--- class: 0
+|--- o2 >  22.35
+|   |--- class: 1
+
+
+### W2: Mapa liderów przestrzeni wag ###
+|--- v_i3 <= 0.036
+|   |--- v_i1 <= 0.694
+|   |   |--- class: WAW
+|   |--- v_i1 >  0.694
+|   |   |--- v_i2 <= 0.071
+|   |   |   |--- v_i3 <= 0.032
+|   |   |   |   |--- class: GDN
+|   |   |   |--- v_i3 >  0.032
+|   |   |   |   |--- class: GDN
+|   |   |--- v_i2 >  0.071
+|   |   |   |--- u_o1 <= 0.022
+|   |   |   |   |--- class: WAW
+|   |   |   |--- u_o1 >  0.022
+|   |   |   |   |--- class: WAW
+|--- v_i3 >  0.036
+|   |--- u_o1 <= 0.828
+|   |   |--- v_i2 <= 0.092
+|   |   |   |--- v_i4 <= 0.391
+|   |   |   |   |--- class: BZG
+|   |   |   |--- v_i4 >  0.391
+|   |   |   |   |--- class: WAW
+|   |   |--- v_i2 >  0.092
+|   |   |   |--- v_i3 <= 0.735
+|   |   |   |   |--- class: WAW
+|   |   |   |--- v_i3 >  0.735
+|   |   |   |   |--- class: BZG
+|   |--- u_o1 >  0.828
+|   |   |--- u_o2 <= 0.077
+|   |   |   |--- v_i3 <= 0.326
+|   |   |   |   |--- class: WRO
+|   |   |   |--- v_i3 >  0.326
+|   |   |   |   |--- class: KRK
+|   |   |--- u_o2 >  0.077
+|   |   |   |--- v_i2 <= 0.113
+|   |   |   |   |--- class: WRO
+|   |   |   |--- v_i2 >  0.113
+|   |   |   |   |--- class: WAW
+
+
+[U5] Częstotliwość bycia benchmarkiem: {'BZG': 0.0636, 'GDN': 0.0026, 'KRK': 0.0139, 'WAW': 0.9182, 'WRO': 0.0017}
+
+--- ANALIZA SZCZEGÓŁOWA DLA KAŻDEJ JEDNOSTKI ---
+
+--- JEDNOSTKA: WAW [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy WAW jest najlepszy? ###
+|--- v_i2 <= 0.086
+|   |--- v_i4 <= 0.346
+|   |   |--- v_i3 <= 0.317
+|   |   |   |--- class: 0
+|   |   |--- v_i3 >  0.317
+|   |   |   |--- class: 0
+|   |--- v_i4 >  0.346
+|   |   |--- v_i3 <= 0.496
+|   |   |   |--- class: 1
+|   |   |--- v_i3 >  0.496
+|   |   |   |--- class: 0
+|--- v_i2 >  0.086
+|   |--- v_i3 <= 0.518
+|   |   |--- u_o2 <= 0.039
+|   |   |   |--- class: 1
+|   |   |--- u_o2 >  0.039
+|   |   |   |--- class: 1
+|   |--- v_i3 >  0.518
+|   |   |--- u_o1 <= 0.870
+|   |   |   |--- class: 1
+|   |   |--- u_o1 >  0.870
+|   |   |   |--- class: 0
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['i2', 'o2'], ['i2', 'o1'], ['i4', 'o2'], ['i4', 'o1']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['i2', 'i4']]
+------------------------------
+--- JEDNOSTKA: KRK [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy KRK jest najlepszy? ###
+|--- u_o1 <= 0.883
+|   |--- v_i3 <= 0.768
+|   |   |--- class: 0
+|   |--- v_i3 >  0.768
+|   |   |--- u_o1 <= 0.866
+|   |   |   |--- class: 0
+|   |   |--- u_o1 >  0.866
+|   |   |   |--- class: 1
+|--- u_o1 >  0.883
+|   |--- v_i3 <= 0.243
+|   |   |--- v_i1 <= 0.637
+|   |   |   |--- class: 0
+|   |   |--- v_i1 >  0.637
+|   |   |   |--- class: 1
+|   |--- v_i3 >  0.243
+|   |   |--- v_i2 <= 0.328
+|   |   |   |--- class: 1
+|   |   |--- v_i2 >  0.328
+|   |   |   |--- class: 0
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['i3', 'o1']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['i3'], ['o1']]
+------------------------------
+--- JEDNOSTKA: KAT [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla KAT ---
+  Optymalny współczynnik efektywności (theta): 0.5903
+  Jednostki rówieśnicze (Peers): KRK (lambda=0.0081), WRO (lambda=1.2156), GDN (lambda=0.2766)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  i1              | 3.6000       | 2.1251       | 0.0000       | 40.97      %
+  i2              | 32.0000      | 18.8896      | 0.0000       | 40.97      %
+  i3              | 57.6000      | 34.0013      | 0.0000       | 40.97      %
+  i4              | 10.5000      | 4.4023       | 1.7959       | 58.07      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  o1              | 2.4000       | 2.4000       | 0.0000       | 0.00       %
+  o2              | 21.1000      | 29.6335      | 8.5335       | 40.44      %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['WRO'], ['GDN'], ['POZ'], ['KRK'], ['WAW']]
+ [U2] Zbiory do usunięcia aby KAT został efektywny to: [['WAW', 'KRK', 'WRO', 'POZ', 'GDN']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['WRO'], ['WAW'], ['POZ'], ['GDN'], ['KRK']]
+  [U4] Rywale uniwersalni: ['POZ', 'GDN', 'KRK', 'WAW', 'WRO']
+  [U4] Rywale obligatoryjni: []
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: WRO [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy WRO jest najlepszy? ###
+|--- u_o1 <= 0.828
+|   |--- class: 0
+|--- u_o1 >  0.828
+|   |--- v_i2 <= 0.113
+|   |   |--- v_i4 <= 0.263
+|   |   |   |--- class: 1
+|   |   |--- v_i4 >  0.263
+|   |   |   |--- class: 0
+|   |--- v_i2 >  0.113
+|   |   |--- class: 0
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['i1', 'i2', 'i3', 'o1'], ['i1', 'i3', 'i4', 'o1'], ['i2', 'i3', 'o1', 'o2'], ['i3', 'i4', 'o1', 'o2']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['i3'], ['o1']]
+------------------------------
+--- JEDNOSTKA: POZ [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla POZ ---
+  Optymalny współczynnik efektywności (theta): 0.7998
+  Jednostki rówieśnicze (Peers): WAW (lambda=0.0483), KRK (lambda=0.0729), WRO (lambda=0.2022), GDN (lambda=0.1632)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  i1              | 1.5000       | 1.1997       | 0.0000       | 20.02      %
+  i2              | 10.0000      | 7.9980       | 0.0000       | 20.02      %
+  i3              | 24.0000      | 19.1952      | 0.0000       | 20.02      %
+  i4              | 4.0000       | 1.9284       | 1.2708       | 51.79      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  o1              | 1.3000       | 1.3000       | 0.0000       | 0.00       %
+  o2              | 16.2000      | 16.2000      | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['WAW']]
+ [U2] Zbiory do usunięcia aby POZ został efektywny to: [['WAW', 'KRK'], ['WAW', 'GDN']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['WAW']]
+  [U4] Rywale uniwersalni: ['WAW']
+  [U4] Rywale obligatoryjni: []
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: LCJ [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla LCJ ---
+  Optymalny współczynnik efektywności (theta): 0.3081
+  Jednostki rówieśnicze (Peers): GDN (lambda=0.1679), BZG (lambda=0.0566)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  i1              | 0.6000       | 0.1849       | 0.0000       | 69.19      %
+  i2              | 12.0000      | 2.8577       | 0.8395       | 76.19      %
+  i3              | 24.0000      | 7.3944       | 0.0000       | 69.19      %
+  i4              | 3.9000       | 0.4876       | 0.7140       | 87.50      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  o1              | 0.3000       | 0.3528       | 0.0528       | 17.60      %
+  o2              | 4.2000       | 4.2000       | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['POZ'], ['BZG'], ['WRO'], ['KRK'], ['WAW'], ['GDN']]
+ [U2] Zbiory do usunięcia aby LCJ został efektywny to: [['WAW', 'KRK', 'WRO', 'POZ', 'GDN', 'BZG']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['WRO'], ['WAW'], ['RZE'], ['POZ'], ['KRK'], ['KAT'], ['BZG'], ['GDN']]
+  [U4] Rywale uniwersalni: ['POZ', 'KAT', 'BZG', 'GDN', 'RZE', 'KRK', 'WAW', 'WRO']
+  [U4] Rywale obligatoryjni: []
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: GDN [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy GDN jest najlepszy? ###
+|--- v_i1 <= 0.696
+|   |--- v_i4 <= 0.000
+|   |   |--- class: 0
+|   |--- v_i4 >  0.000
+|   |   |--- class: 0
+|--- v_i1 >  0.696
+|   |--- v_i3 <= 0.037
+|   |   |--- v_i2 <= 0.071
+|   |   |   |--- class: 1
+|   |   |--- v_i2 >  0.071
+|   |   |   |--- class: 0
+|   |--- v_i3 >  0.037
+|   |   |--- class: 0
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['i1', 'o2'], ['i1', 'o1']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['i1']]
+------------------------------
+--- JEDNOSTKA: SZZ [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla SZZ ---
+  Optymalny współczynnik efektywności (theta): 0.2788
+  Jednostki rówieśnicze (Peers): WAW (lambda=0.0019), GDN (lambda=0.1563), BZG (lambda=0.0625)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  i1              | 0.7000       | 0.1952       | 0.0000       | 72.12      %
+  i2              | 10.0000      | 2.7880       | 0.0000       | 72.12      %
+  i3              | 25.7000      | 7.1652       | 0.0000       | 72.12      %
+  i4              | 1.9000       | 0.4790       | 0.0507       | 74.79      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  o1              | 0.3000       | 0.3496       | 0.0496       | 16.53      %
+  o2              | 4.2000       | 4.2000       | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['POZ'], ['WAW'], ['BZG'], ['WRO'], ['GDN'], ['KRK']]
+ [U2] Zbiory do usunięcia aby SZZ został efektywny to: [['WAW', 'KRK', 'WRO', 'POZ', 'GDN', 'BZG']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['WRO'], ['WAW'], ['POZ'], ['KRK'], ['BZG'], ['GDN']]
+  [U4] Rywale uniwersalni: ['POZ', 'BZG', 'GDN', 'KRK', 'WAW', 'WRO']
+  [U4] Rywale obligatoryjni: []
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: BZG [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy BZG jest najlepszy? ###
+|--- v_i2 <= 0.092
+|   |--- v_i4 <= 0.346
+|   |   |--- v_i3 <= 0.267
+|   |   |   |--- class: 1
+|   |   |--- v_i3 >  0.267
+|   |   |   |--- class: 1
+|   |--- v_i4 >  0.346
+|   |   |--- v_i3 <= 0.525
+|   |   |   |--- class: 0
+|   |   |--- v_i3 >  0.525
+|   |   |   |--- class: 1
+|--- v_i2 >  0.092
+|   |--- v_i3 <= 0.735
+|   |   |--- v_i3 <= 0.668
+|   |   |   |--- class: 0
+|   |   |--- v_i3 >  0.668
+|   |   |   |--- class: 0
+|   |--- v_i3 >  0.735
+|   |   |--- v_i2 <= 0.127
+|   |   |   |--- class: 1
+|   |   |--- v_i2 >  0.127
+|   |   |   |--- class: 0
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['i3', 'o2']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['i3']]
+------------------------------
+--- JEDNOSTKA: RZE [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla RZE ---
+  Optymalny współczynnik efektywności (theta): 0.4092
+  Jednostki rówieśnicze (Peers): WRO (lambda=0.1213), GDN (lambda=0.0545), BZG (lambda=0.0304)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  i1              | 0.6000       | 0.2455       | 0.0000       | 59.08      %
+  i2              | 6.0000       | 2.4552       | 0.0000       | 59.08      %
+  i3              | 11.3000      | 4.6240       | 0.0000       | 59.08      %
+  i4              | 2.7000       | 0.5365       | 0.5683       | 80.13      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  o1              | 0.3000       | 0.3000       | 0.0000       | 0.00       %
+  o2              | 3.5000       | 3.6935       | 0.1935       | 5.53       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['GDN'], ['WAW'], ['WRO'], ['KAT'], ['POZ'], ['KRK']]
+ [U2] Zbiory do usunięcia aby RZE został efektywny to: [['WAW', 'KRK', 'KAT', 'WRO', 'POZ', 'GDN']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['WRO'], ['WAW'], ['POZ'], ['KRK'], ['KAT'], ['BZG'], ['GDN']]
+  [U4] Rywale uniwersalni: ['POZ', 'KAT', 'BZG', 'GDN', 'KRK', 'WAW', 'WRO']
+  [U4] Rywale obligatoryjni: []
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: IEG [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla IEG ---
+  Optymalny współczynnik efektywności (theta): 0.2585
+  Jednostki rówieśnicze (Peers): GDN (lambda=0.0258)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  i1              | 0.1000       | 0.0259       | 0.0000       | 74.15      %
+  i2              | 10.0000      | 0.3880       | 2.1970       | 96.12      %
+  i3              | 63.4000      | 1.1105       | 15.2784      | 98.25      %
+  i4              | 3.0000       | 0.0647       | 0.7108       | 97.84      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  o1              | 0.0050       | 0.0517       | 0.0467       | 934.00     %
+  o2              | 0.6100       | 0.6100       | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['LCJ'], ['POZ'], ['WAW'], ['KRK'], ['WRO'], ['BZG'], ['GDN']]
+ [U2] Zbiory do usunięcia aby IEG został efektywny to: [['WAW', 'KRK', 'WRO', 'POZ', 'LCJ', 'GDN', 'BZG']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['WRO'], ['WAW'], ['SZZ'], ['RZE'], ['POZ'], ['LCJ'], ['KRK'], ['KAT'], ['BZG'], ['GDN']]
+  [U4] Rywale uniwersalni: ['POZ', 'SZZ', 'KAT', 'BZG', 'LCJ', 'GDN', 'KRK', 'WAW', 'RZE', 'WRO']
+  [U4] Rywale obligatoryjni: []
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------

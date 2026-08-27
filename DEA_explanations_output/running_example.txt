@@ -1,0 +1,347 @@
+====================================================
+RAPORT WYJAŚNIEŃ DEA DLA DATASETU: RUNNING EXAMPLE
+====================================================
+
+### P1: Globalne reguły rozdzielające ###
+|--- x2 <= 9.50
+|   |--- y1 <= 4.50
+|   |   |--- class: 0
+|   |--- y1 >  4.50
+|   |   |--- class: 1
+|--- x2 >  9.50
+|   |--- y2 <= 3.50
+|   |   |--- class: 0
+|   |--- y2 >  3.50
+|   |   |--- x1 <= 6.50
+|   |   |   |--- class: 0
+|   |   |--- x1 >  6.50
+|   |   |   |--- class: 1
+
+
+### W2: Mapa liderów przestrzeni wag ###
+|--- v_x1 <= 0.711
+|   |--- v_x2 <= 0.327
+|   |   |--- u_y1 <= 0.664
+|   |   |   |--- class: F
+|   |   |--- u_y1 >  0.664
+|   |   |   |--- u_y2 <= 0.290
+|   |   |   |   |--- class: G
+|   |   |   |--- u_y2 >  0.290
+|   |   |   |   |--- class: B
+|   |--- v_x2 >  0.327
+|   |   |--- u_y2 <= 0.357
+|   |   |   |--- v_x2 <= 0.342
+|   |   |   |   |--- class: G
+|   |   |   |--- v_x2 >  0.342
+|   |   |   |   |--- class: G
+|   |   |--- u_y2 >  0.357
+|   |   |   |--- v_x2 <= 0.406
+|   |   |   |   |--- class: F
+|   |   |   |--- v_x2 >  0.406
+|   |   |   |   |--- class: G
+|--- v_x1 >  0.711
+|   |--- u_y1 <= 0.693
+|   |   |--- v_x2 <= 0.288
+|   |   |   |--- u_y2 <= 0.309
+|   |   |   |   |--- class: F
+|   |   |   |--- u_y2 >  0.309
+|   |   |   |   |--- class: F
+|   |   |--- v_x2 >  0.288
+|   |   |   |--- v_x2 <= 0.288
+|   |   |   |   |--- class: A
+|   |   |   |--- v_x2 >  0.288
+|   |   |   |   |--- class: F
+|   |--- u_y1 >  0.693
+|   |   |--- v_x2 <= 0.287
+|   |   |   |--- v_x1 <= 0.750
+|   |   |   |   |--- class: A
+|   |   |   |--- v_x1 >  0.750
+|   |   |   |   |--- class: F
+|   |   |--- v_x2 >  0.287
+|   |   |   |--- u_y1 <= 0.710
+|   |   |   |   |--- class: A
+|   |   |   |--- u_y1 >  0.710
+|   |   |   |   |--- class: B
+
+
+[U5] Częstotliwość bycia benchmarkiem: {'A': 0.0371, 'F': 0.2972, 'G': 0.6581, 'B': 0.0076}
+
+--- ANALIZA SZCZEGÓŁOWA DLA KAŻDEJ JEDNOSTKI ---
+
+--- JEDNOSTKA: A [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy A jest najlepszy? ###
+|--- v_x2 <= 0.296
+|   |--- u_y1 <= 0.686
+|   |   |--- u_y2 <= 0.314
+|   |   |   |--- class: 0
+|   |   |--- u_y2 >  0.314
+|   |   |   |--- class: 0
+|   |--- u_y1 >  0.686
+|   |   |--- u_y2 <= 0.308
+|   |   |   |--- class: 1
+|   |   |--- u_y2 >  0.308
+|   |   |   |--- class: 1
+|--- v_x2 >  0.296
+|   |--- v_x2 <= 0.299
+|   |   |--- v_x2 <= 0.299
+|   |   |   |--- class: 0
+|   |   |--- v_x2 >  0.299
+|   |   |   |--- class: 1
+|   |--- v_x2 >  0.299
+|   |   |--- v_x2 <= 0.299
+|   |   |   |--- class: 0
+|   |   |--- v_x2 >  0.299
+|   |   |   |--- class: 0
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['x1', 'y1']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['x1'], ['y2'], ['y1'], ['x2']]
+------------------------------
+--- JEDNOSTKA: B [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy B jest najlepszy? ###
+|--- v_x1 <= 0.673
+|   |--- class: 0
+|--- v_x1 >  0.673
+|   |--- v_x2 <= 0.287
+|   |   |--- class: 0
+|   |--- v_x2 >  0.287
+|   |   |--- u_y2 <= 0.336
+|   |   |   |--- class: 1
+|   |   |--- u_y2 >  0.336
+|   |   |   |--- class: 0
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['x1', 'x2', 'y1', 'y2']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['x2'], ['y2'], ['x1'], ['y1']]
+------------------------------
+--- JEDNOSTKA: C [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla C ---
+  Optymalny współczynnik efektywności (theta): 0.9652
+  Jednostki rówieśnicze (Peers): F (lambda=0.6567), G (lambda=0.3383), J (lambda=0.0050)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  x1              | 9.0000       | 8.6868       | 0.0000       | 3.48       %
+  x2              | 10.0000      | 9.6520       | 0.0000       | 3.48       %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  y1              | 5.0000       | 5.0000       | 0.0000       | 0.00       %
+  y2              | 3.0000       | 3.0000       | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['A']]
+ [U2] Zbiory do usunięcia aby C został efektywny to: [['A', 'F']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['A']]
+  [U4] Rywale uniwersalni: ['A']
+  [U4] Rywale obligatoryjni: []
+  [C1/C2] Pominięto — C jest nieefektywna już bez ograniczeń (ρ*(∅)=0.9652), nieefektywność wynika z wyników.
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: D [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla D ---
+  Optymalny współczynnik efektywności (theta): 0.8206
+  Jednostki rówieśnicze (Peers): F (lambda=0.1822), G (lambda=0.4506), J (lambda=0.1172)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  x1              | 9.0000       | 7.3854       | 0.0000       | 17.94      %
+  x2              | 8.0000       | 6.5648       | 0.0000       | 17.94      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  y1              | 4.0000       | 4.0000       | 0.0000       | 0.00       %
+  y2              | 2.0000       | 2.0000       | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['C'], ['F'], ['H'], ['A'], ['G'], ['E'], ['B']]
+ [U2] Zbiory do usunięcia aby D został efektywny to: [['A', 'B', 'C', 'E', 'F', 'G', 'H']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['H'], ['G'], ['F'], ['E'], ['C'], ['A'], ['B']]
+  [U4] Rywale uniwersalni: ['G', 'E', 'F', 'B', 'H', 'C', 'A']
+  [U4] Rywale obligatoryjni: []
+  [C1/C2] Pominięto — D jest nieefektywna już bez ograniczeń (ρ*(∅)=0.8206), nieefektywność wynika z wyników.
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: E [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla E ---
+  Optymalny współczynnik efektywności (theta): 0.8300
+  Jednostki rówieśnicze (Peers): A (lambda=0.2000), B (lambda=0.6000), F (lambda=0.1000)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  x1              | 10.0000      | 8.3000       | 0.0000       | 17.00      %
+  x2              | 10.0000      | 8.3000       | 0.0000       | 17.00      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  y1              | 5.0000       | 5.0000       | 0.0000       | 0.00       %
+  y2              | 2.0000       | 2.0000       | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['C'], ['H'], ['G'], ['B'], ['F'], ['A']]
+ [U2] Zbiory do usunięcia aby E został efektywny to: [['A', 'B', 'C', 'F', 'G', 'H']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['H'], ['G'], ['F'], ['C'], ['A'], ['B']]
+  [U4] Rywale uniwersalni: ['G', 'F', 'B', 'H', 'C', 'A']
+  [U4] Rywale obligatoryjni: []
+  [C1/C2] Pominięto — E jest nieefektywna już bez ograniczeń (ρ*(∅)=0.8300), nieefektywność wynika z wyników.
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: F [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy F jest najlepszy? ###
+|--- v_x2 <= 0.378
+|   |--- u_y2 <= 0.308
+|   |   |--- v_x1 <= 0.736
+|   |   |   |--- class: 0
+|   |   |--- v_x1 >  0.736
+|   |   |   |--- class: 0
+|   |--- u_y2 >  0.308
+|   |   |--- u_y1 <= 0.662
+|   |   |   |--- class: 1
+|   |   |--- u_y1 >  0.662
+|   |   |   |--- class: 1
+|--- v_x2 >  0.378
+|   |--- u_y1 <= 0.613
+|   |   |--- v_x1 <= 0.578
+|   |   |   |--- class: 0
+|   |   |--- v_x1 >  0.578
+|   |   |   |--- class: 1
+|   |--- u_y1 >  0.613
+|   |   |--- u_y1 <= 0.622
+|   |   |   |--- class: 0
+|   |   |--- u_y1 >  0.622
+|   |   |   |--- class: 0
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['x1', 'y1', 'y2']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['y1'], ['y2'], ['x1']]
+------------------------------
+--- JEDNOSTKA: G [EFEKTYWNA] ---
+  [U1-U5] Pomijane ze względu na efektywność
+
+### W1: Kiedy G jest najlepszy? ###
+|--- v_x2 <= 0.361
+|   |--- u_y1 <= 0.676
+|   |   |--- u_y2 <= 0.340
+|   |   |   |--- class: 0
+|   |   |--- u_y2 >  0.340
+|   |   |   |--- class: 0
+|   |--- u_y1 >  0.676
+|   |   |--- v_x1 <= 0.704
+|   |   |   |--- class: 1
+|   |   |--- v_x1 >  0.704
+|   |   |   |--- class: 0
+|--- v_x2 >  0.361
+|   |--- u_y2 <= 0.386
+|   |   |--- u_y1 <= 0.631
+|   |   |   |--- class: 1
+|   |   |--- u_y1 >  0.631
+|   |   |   |--- class: 1
+|   |--- u_y2 >  0.386
+|   |   |--- v_x2 <= 0.420
+|   |   |   |--- class: 0
+|   |   |--- v_x2 >  0.420
+|   |   |   |--- class: 1
+
+  [F1] Minimalne zestawy cech dla sukcesu: [['x2', 'y1']]
+  [F2] Cechy krytyczne (ich brak niszczy efektywność): [['x2'], ['y1']]
+------------------------------
+--- JEDNOSTKA: H [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla H ---
+  Optymalny współczynnik efektywności (theta): 0.9432
+  Jednostki rówieśnicze (Peers): F (lambda=0.6250), G (lambda=0.5000)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  x1              | 11.0000      | 10.3752      | 0.0000       | 5.68       %
+  x2              | 11.0000      | 10.3752      | 0.0000       | 5.68       %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  y1              | 6.0000       | 6.0000       | 0.0000       | 0.00       %
+  y2              | 3.0000       | 3.0000       | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['B'], ['A']]
+ [U2] Zbiory do usunięcia aby H został efektywny to: [['A', 'B', 'G']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['A'], ['B']]
+  [U4] Rywale uniwersalni: ['A', 'B']
+  [U4] Rywale obligatoryjni: []
+  [C1/C2] Pominięto — H jest nieefektywna już bez ograniczeń (ρ*(∅)=0.9432), nieefektywność wynika z wyników.
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: I [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla I ---
+  Optymalny współczynnik efektywności (theta): 0.8125
+  Jednostki rówieśnicze (Peers): A (lambda=0.6250), G (lambda=0.1250)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  x1              | 8.0000       | 6.5000       | 0.0000       | 18.75      %
+  x2              | 8.0000       | 6.5000       | 0.0000       | 18.75      %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  y1              | 4.0000       | 4.0000       | 0.0000       | 0.00       %
+  y2              | 1.0000       | 1.3750       | 0.3750       | 37.50      %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['C'], ['E'], ['G'], ['B'], ['H'], ['A'], ['F']]
+ [U2] Zbiory do usunięcia aby I został efektywny to: [['A', 'B', 'C', 'E', 'F', 'G', 'H']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['H'], ['G'], ['F'], ['E'], ['C'], ['A'], ['B']]
+  [U4] Rywale uniwersalni: ['G', 'E', 'B', 'H', 'A', 'C', 'F']
+  [U4] Rywale obligatoryjni: []
+  [C1/C2] Pominięto — I jest nieefektywna już bez ograniczeń (ρ*(∅)=0.8125), nieefektywność wynika z wyników.
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
+--- JEDNOSTKA: J [NIEFEKTYWNA] ---
+
+--- [P2] Raport Projekcji i Rówieśników dla J ---
+  Optymalny współczynnik efektywności (theta): 1.0000
+  Jednostki rówieśnicze (Peers): J (lambda=1.0000)
+
+  ANALIZA CECH WEJŚCIOWYCH (INPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Redukcja %  
+  -------------------------------------------------------------------------
+  x1              | 6.0000       | 6.0000       | 0.0000       | 0.00       %
+  x2              | 12.0000      | 12.0000      | 0.0000       | 0.00       %
+
+  ANALIZA CECH WYJŚCIOWYCH (OUTPUTS):
+  Cecha           | Oryginalna   | Docelowa     | Slack        | Wzrost %    
+  -------------------------------------------------------------------------
+  y1              | 1.0000       | 1.0000       | 0.0000       | 0.00       %
+  y2              | 7.0000       | 7.0000       | 0.0000       | 0.00       %
+
+------------------------------
+
+  [U1] Zbiory świadków nieefektywności: [['F']]
+ [U2] Zbiory do usunięcia aby J został efektywny to: [['F']]
+  [U3] Minimalny zbiór rywali (scenariusze): [['F']]
+  [U4] Rywale uniwersalni: ['F']
+  [U4] Rywale obligatoryjni: ['F']
+  [C1] Zbiory ograniczeń do usunięcia aby J został efektywny: [['c_3'], ['c_2']]
+  [C2] Rdzeń ograniczeń wymuszający nieefektywność J: [['c_2', 'c_3']]
+  [F1/F2] Analiza czynników pominięta (jednostka nieefektywna).
+------------------------------
